@@ -40,3 +40,22 @@ $db->exec("
         UNIQUE(user_id, review_id)
     );
 ");
+
+// Seed categories if empty
+$count = $db->query("SELECT COUNT(*) FROM categories")->fetchColumn();
+if ($count == 0) {
+    $db->exec("
+        INSERT INTO categories (name) VALUES ('Action'), ('RPG'), ('Strategy'), ('Shooter'), ('Adventure'), ('Sports'), ('Puzzle'), ('Horror');
+    ");
+}
+
+// Seed admin user if not exists
+$check = $db->prepare("SELECT COUNT(*) FROM users WHERE username = ?");
+$check->execute(['admin']);
+if ($check->fetchColumn() == 0) {
+    $hash = password_hash('admin123', PASSWORD_DEFAULT);
+    $stmt = $db->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, 'admin')");
+    $stmt->execute(['admin', 'admin@example.com', $hash]);
+}
+
+echo "Database initialized!";
