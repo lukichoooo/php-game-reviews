@@ -30,7 +30,7 @@ class User
         if ($user && password_verify($password, $user['password'])) {
             return new ResponseDto(
                 success: true,
-                data: ['user' => $user]
+                data: $user
             );
         }
         return new ResponseDto(
@@ -44,7 +44,7 @@ class User
         $db = Database::getInstance();
         return new ResponseDto(
             success: true,
-            data: ['user' => $db->query("SELECT * FROM users WHERE id = ?", [$id])->fetch()]
+            data: $db->query("SELECT * FROM users WHERE id = ?", [$id])->fetch()
         );
     }
 
@@ -53,7 +53,7 @@ class User
         $db = Database::getInstance();
         return new ResponseDto(
             success: true,
-            data: ['users' => $db->query("SELECT * FROM users ORDER BY created_at DESC")->fetchAll()]
+            data: $db->query("SELECT * FROM users ORDER BY created_at DESC")->fetchAll()
         );
     }
 

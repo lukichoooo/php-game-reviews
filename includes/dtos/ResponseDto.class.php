@@ -4,9 +4,9 @@ class ResponseDto
 {
     public bool $success;
     public ?string $error;
-    public ?array $data;
+    public mixed $data;
 
-    public function __construct(bool $success, ?string $error = null, ?array $data = null)
+    public function __construct(bool $success, ?string $error = null, mixed $data = null)
     {
         $this->success = $success;
         $this->error = $error;
