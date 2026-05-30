@@ -37,3 +37,9 @@ function isAdmin(): bool
 {
     return isLoggedIn() && $_SESSION['role'] === 'admin';
 }
+
+function redirect($url)
+{
+    header("Location: $url");
+    exit;
+}

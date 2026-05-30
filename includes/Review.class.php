@@ -90,7 +90,7 @@ class Review
     {
         $db = Database::getInstance();
         $getResult = self::getById($id);
-        $review = $getResult['data'] ?? null;
+        $review = $getResult->data ?? null;
         if ($review && $review['image']) {
             $path = UPLOAD_DIR . $review['image'];
             if (file_exists($path)) unlink($path);
