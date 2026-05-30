@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['role'] = $user['role'];
 
         if (isset($_POST['remember'])) {
-            setcookie('remember_token', $user['id'], time() + 86400 * 30, '/');
+            setcookie('remember_token', $user['id'], time() + 60 * 60 * 24 * 30, '/');
         }
 
         redirect('index.php');
