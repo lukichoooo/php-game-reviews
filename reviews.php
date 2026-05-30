@@ -6,9 +6,9 @@ $categories = Review::getCategories()->data;
 $selectedCat = isset($_GET['category']) ? (int)$_GET['category'] : null;
 
 if ($selectedCat) {
-    $reviews = Review::getByCategory($selectedCat);
+    $reviews = Review::getByCategory($selectedCat)->data;
 } else {
-    $reviews = Review::getAll();
+    $reviews = Review::getAll()->data;
 }
 
 $title = 'All Reviews';
