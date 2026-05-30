@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $content = $_POST['content'];
     $rating = (int)$_POST['rating'];
     $accentColor = $_POST['accent_color'] ?? '#ff6600';
-    $categoryId = !empty($_POST['category_id']) ? (int)$_POST['category_id'] : null;
+    $categoryId = !empty($_POST['category_id']) ? (int)$_POST['category_id'] : 0;
     $editId = isset($_POST['edit_id']) ? (int)$_POST['edit_id'] : 0;
 
     $imageName = null;
